@@ -96,6 +96,32 @@
   </div>
 
 <script>
+let startBox = undefined;
+let endBox = undefined;
+
+function multiCheck(start, end){
+  const multiBoxes = cbs.slice(start, end+1);
+  multiBoxes.forEach(box => box.checked = true);
+;}
+
+function updateBoxes(e) {
+  console.log('clicked');
+  console.log(e.target);
+
+  const target = e.target;
+  if(target.checked === true && e.shiftKey === true && startBox != undefined) {
+    endBox = cbs.indexOf(target);
+    multiCheck(startBox, endBox);
+  } else if(target.checked === true && e.shiftKey === false) {
+    startBox = cbs.indexOf(target);
+  } else {
+    startBox = undefined;
+    endBox = undefined;
+  }
+}
+
+const cbs = Array.from(document.querySelectorAll('input[type=checkbox'));
+cbs.forEach(cb => cb.addEventListener('click', updateBoxes));
 </script>
 </body>
 </html>
