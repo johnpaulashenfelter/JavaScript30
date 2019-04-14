@@ -47,7 +47,13 @@
 
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const r = RegExp(/^A|^An|^The/);
 
+const sorted = bands.sort((a,b) => {
+  const ax = a.split(r)[1] || a;
+  const bx = b.split(r)[1] || b;
+   return ax.trim() > bx.trim();
+})
 
 </script>
 
