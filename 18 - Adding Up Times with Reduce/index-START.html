@@ -182,6 +182,20 @@
     </li>
   </ul>
 <script>
+  const times = Array.from(document.querySelectorAll('[data-time]'));
+  const totalTime = times.reduce((total, time) => {
+    const t = time.attributes["data-time"].value;
+    // console.log(t);
+    [mins, secs] = t.split(':');
+    // console.log(parseInt(mins));
+    // console.log(parseInt(secs));
+    return (parseInt(mins) * 60 + parseInt(secs)) + total;
+  }, 0);
+  const h = Math.floor(totalTime / 3600);
+  const _s = totalTime % 3600;
+  const m = Math.floor(_s / 60);
+  const s = _s % 60;
+  console.log(`${h} hours, ${m} mins, and ${s} seconds `);
 </script>
 </body>
 </html>
